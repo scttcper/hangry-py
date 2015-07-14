@@ -26,6 +26,7 @@ setup(
         'beautifulsoup4',
         'requests',
         'isodate',
+        'html5lib',
     ],
     tests_require=['pytest'],
     test_suite='hangrytest',
