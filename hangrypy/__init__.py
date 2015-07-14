@@ -62,11 +62,7 @@ class hangry(object):
         return recipe_parser
 
     def url_setup(self, url):
-        # mostly copied from
-        # https://github.com/mitsuhiko/werkzeug/blob/master/werkzeug/urls.py
         self.full_url = url
-        if isinstance(url, unicode):
-            url = url.encode('utf-8', 'ignore')
         scheme, netloc, path, qs, anchor = urllib2.urlparse.urlsplit(url)
         self.domain = netloc
         path = urllib2.quote(path, '/%')
