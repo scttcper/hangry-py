@@ -1,0 +1,2 @@
+beautifulsoup4==4.4.0
+isodate==0.5.1
