@@ -4,7 +4,7 @@ from .default_recipe_parser import recipe_parser
 
 
 def use_schema_org(html):
-    if 'http://schema.org/Recipe' in html:
+    if 'http://schema.org/Recipe' in str(html):
         return True
     return False
 
