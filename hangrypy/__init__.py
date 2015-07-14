@@ -10,6 +10,7 @@ from .default_recipe_parser import recipe_parser
 from .non_standard.allrecipes import allrecipes
 from .schema_org_recipe_parser import schema_org_recipe_parser, use_schema_org
 
+# messy python 3 support
 try:
     from urllib.request import urlopen, quote
     from urllib.parse import urlunsplit, urlsplit
@@ -30,7 +31,6 @@ recipe = [
     'cook_time',
     'prep_time',
     'total_time',
-
     'canonical_url',
     'description',
     'image_url',

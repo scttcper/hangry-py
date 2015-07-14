@@ -6,6 +6,6 @@ install:
 - pip install -e .
 - pip install coveralls
 script:
-- coverage run --source=hangry setup.py test
+- coverage run --source=hangrypy setup.py test
 after_success:
 - coveralls
