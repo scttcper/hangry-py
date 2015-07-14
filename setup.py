@@ -25,6 +25,7 @@ setup(
     install_requires=[
         'beautifulsoup4',
         'requests',
+        'isodate',
     ],
     tests_require=['pytest'],
     test_suite='hangrytest',
