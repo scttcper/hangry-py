@@ -11,9 +11,11 @@ from .non_standard.allrecipes import allrecipes
 from .schema_org_recipe_parser import schema_org_recipe_parser, use_schema_org
 
 try:
-    import urllib.request as urllib2
+    from urllib.request import urlopen, quote
+    from urllib.parse import urlunsplit, urlsplit
 except ImportError:
-    import urllib2
+    from urllib2 import urlopen, quote
+    from urllib2.urlparse import urlsplit
 
 
 parsers = {
@@ -48,7 +50,7 @@ class hangry(object):
         self.recipe = {x: None for x in recipe}
 
         # open url
-        self.html = urllib2.urlopen(url).read()
+        self.html = urlopen(url).read()
         self.parser = self.select_parser(parser)(self.html, self.recipe, self)
         self.parse()
 
@@ -63,11 +65,11 @@ class hangry(object):
 
     def url_setup(self, url):
         self.full_url = url
-        scheme, netloc, path, qs, anchor = urllib2.urlparse.urlsplit(url)
+        scheme, netloc, path, qs, anchor = urlsplit(url)
         self.domain = netloc
-        path = urllib2.quote(path, '/%')
+        path = quote(path, '/%')
         # remove everything after path
-        self.trimmed_url = urllib2.urlparse.urlunsplit((scheme, netloc, path, '', ''))
+        self.trimmed_url = urlunsplit((scheme, netloc, path, '', ''))
 
     def parse(self):
         self.parser.parse_cook_time()
