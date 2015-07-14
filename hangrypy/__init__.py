@@ -15,7 +15,7 @@ try:
     from urllib.parse import urlunsplit, urlsplit
 except ImportError:
     from urllib2 import urlopen, quote
-    from urllib2.urlparse import urlsplit
+    from urlparse import urlsplit, urlunsplit
 
 
 parsers = {
