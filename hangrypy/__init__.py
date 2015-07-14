@@ -5,11 +5,16 @@
     Description
 """
 from json import dumps
-from urllib2 import quote, urlopen, urlparse
 
 from .default_recipe_parser import recipe_parser
 from .non_standard.allrecipes import allrecipes
 from .schema_org_recipe_parser import schema_org_recipe_parser, use_schema_org
+
+try:
+    import urllib.request as urllib2
+except ImportError:
+    import urllib2
+
 
 parsers = {
     'schema_org_recipe_parser': schema_org_recipe_parser
@@ -43,7 +48,7 @@ class hangry(object):
         self.recipe = {x: None for x in recipe}
 
         # open url
-        self.html = urlopen(url).read()
+        self.html = urllib2.urlopen(url).read()
         self.parser = self.select_parser(parser)(self.html, self.recipe, self)
         self.parse()
 
@@ -62,11 +67,11 @@ class hangry(object):
         self.full_url = url
         if isinstance(url, unicode):
             url = url.encode('utf-8', 'ignore')
-        scheme, netloc, path, qs, anchor = urlparse.urlsplit(url)
+        scheme, netloc, path, qs, anchor = urllib2.urlparse.urlsplit(url)
         self.domain = netloc
-        path = quote(path, '/%')
+        path = urllib2.quote(path, '/%')
         # remove everything after path
-        self.trimmed_url = urlparse.urlunsplit((scheme, netloc, path, '', ''))
+        self.trimmed_url = urllib2.urlparse.urlunsplit((scheme, netloc, path, '', ''))
 
     def parse(self):
         self.parser.parse_cook_time()
