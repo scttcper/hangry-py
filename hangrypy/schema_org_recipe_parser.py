@@ -57,7 +57,7 @@ class schema_org_recipe_parser(recipe_parser):
         if el:
             y = findall(r'\d+', el.get_text() or el['content'])
             if y:
-                self.recipe['yield'] = y[0]
+                self.recipe['yield'] = int(y[0])
 
     def parse_instructions(self):
         els = self.soup.find(attrs={'itemprop': 'recipeInstructions'})
