@@ -39,6 +39,7 @@ recipe = [
     'name',
     'published_date',
     'yield',
+    'yield_modifier'
 ]
 
 
@@ -79,7 +80,7 @@ class hangry(object):
         self.parser.parse_image_url()
         self.parser.parse_description()
         self.parser.parse_published_date()
-        self.parser.parse_yields()
+        self.parser.parse_yield()
         self.parser.parse_name()
         self.parser.parse_instructions()
         self.parser.parse_ingredients()

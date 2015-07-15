@@ -38,26 +38,31 @@ class schema_org_recipe_parser(recipe_parser):
             self.recipe['canonical_url'] = self.parent.trimmed_url
 
     def parse_image_url(self):
-        el = self.soup.find(attrs={'id': 'canonicalUrl'})
-        if el and el.has_attr('href'):
-            self.recipe['image_url'] = el['href']
+        el = self.soup.find(attrs={'itemtype': 'http://schema.org/Recipe'})
+        if el:
+            el = el.find(attrs={'itemprop': 'image'})
+        if el and el.has_attr('src'):
+            self.recipe['image_url'] = el['src']
 
     def parse_description(self):
         el = self.soup.find(attrs={'itemprop': 'description'})
         if el:
-            self.recipe['description'] = el.get_text() or el['content']
+            text = el.get_text() or el['content']
+            self.recipe['description'] = text.strip()
 
     def parse_published_date(self):
         el = self.soup.find(attrs={'itemprop': 'datePublished'})
         if el and el.has_attr('datetime'):
             self.recipe['published_date'] = el.get_text()
 
-    def parse_yields(self):
+    def parse_yield(self):
         el = self.soup.find(attrs={'itemprop': 'recipeYield'})
         if el:
-            y = findall(r'\d+', el.get_text() or el['content'])
+            text = el.get_text() or el['content']
+            y = findall(r'\d+', text.split(' ')[0])
             if y:
                 self.recipe['yield'] = int(y[0])
+            self.recipe['yield_modifier'] = ' '.join(text.split(' ')[1:])
 
     def parse_instructions(self):
         els = self.soup.find(attrs={'itemprop': 'recipeInstructions'})
@@ -70,9 +75,9 @@ class schema_org_recipe_parser(recipe_parser):
         for el in els:
             t = el.get_text()
             t = sub('[\t\r\n]', '', t)
-            t = sub("\s+"," ", t)
+            t = sub("\s+"," ", t).strip()
             if len(t) > 2:
-                res.append(t.strip())
+                res.append(t)
         self.recipe['ingredients'] = res or None
 
     def parse_name(self):

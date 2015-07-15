@@ -18,9 +18,7 @@ class recipe_parser(object):
         try:
             return int(parse_duration(datetime).total_seconds())
         except:
-            pass
-        try:
-            return int(datetime)
-        except:
-            pass
-        return None
+            try:
+                return int(datetime)
+            except:
+                return None
