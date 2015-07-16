@@ -14,7 +14,7 @@ def test_spinach_mushroom_stuff_chicken():
     assert h.recipe['cook_time'] == 1200
     assert h.recipe['total_time'] == 2100
     assert h.recipe['published_date'] == None
-    assert h.recipe['yield'] == 4
+    assert h.recipe['yields'] == 4
 
 def test_blueberry_muffins():
     h = hangry('http://allrecipes.com/Recipe/Blueberry-Streusel-Muffins/Detail.aspx?evt19=1&referringHubId=2003')
@@ -28,7 +28,7 @@ def test_blueberry_muffins():
     assert h.recipe['cook_time'] == 1800
     assert h.recipe['total_time'] == 3000
     assert h.recipe['published_date'] == None
-    assert h.recipe['yield'] == 1
+    assert h.recipe['yields'] == 1
     assert h.recipe['yield_modifier'] == 'dozen'
 
 
@@ -44,5 +44,5 @@ def test_apple_crisp():
     assert h.recipe['cook_time'] == 2700
     assert h.recipe['total_time'] == 4800
     assert h.recipe['published_date'] == None
-    assert h.recipe['yield'] == 1
+    assert h.recipe['yields'] == 1
     assert h.recipe['yield_modifier'] == '9x13-inch pan'

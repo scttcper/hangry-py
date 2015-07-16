@@ -1,13 +1,10 @@
-from bs4 import BeautifulSoup
 from isodate import parse_duration
 
 
 class recipe_parser(object):
 
-    def __init__(self, html, r, parent):
-        self.soup = BeautifulSoup(html, 'html5lib')
-        self.recipe = r
-        self.parent = parent
+    def __init__(self, soup):
+        self.soup = soup
 
     # TODO: create a default recipe parser
 
