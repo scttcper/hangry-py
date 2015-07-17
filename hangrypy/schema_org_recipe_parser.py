@@ -63,12 +63,17 @@ class schema_org_recipe_parser(recipe_parser):
             return yield_modifier, yields
 
     def parse_instructions(self):
-        els = self.soup.find(attrs={'itemprop': 'recipeInstructions'})
-        res = [sub(r'[\t\r\n]', '', el.get_text()) for el in els.findAll('li')]
+        root = self.soup.find(attrs={'itemprop': 'recipeInstructions'})
+
+        res = []
+        for el in root.find_all('li'):
+            t = sub(r'[\t\r\n]', '', el.get_text())
+            if len(t) > 2:
+                res.append(t)
         return res or None
 
     def parse_ingredients(self):
-        els = self.soup.findAll(attrs={'itemprop': 'ingredients'})
+        els = self.soup.find_all(attrs={'itemprop': 'ingredients'})
         res = []
         for el in els:
             t = el.get_text()

@@ -1,15 +1,15 @@
 from __future__ import print_function
-from hangrypy import hangry
+from hangrypy import Hangry
 
 
 def test_spinach_mushroom_stuff_chicken():
-    h = hangry('http://www.foodnetwork.com/recipes/rachael-ray/spinach-and-mushroom-stuffed-chicken-breasts-recipe.html')
+    h = Hangry(url='http://www.foodnetwork.com/recipes/rachael-ray/spinach-and-mushroom-stuffed-chicken-breasts-recipe.html')
     assert h.recipe['canonical_url'] == 'http://www.foodnetwork.com/recipes/rachael-ray/spinach-and-mushroom-stuffed-chicken-breasts-recipe.html'
     assert h.recipe['name'] == 'Spinach and Mushroom Stuffed Chicken Breasts'
     assert h.recipe['description'] == 'Get this all-star, easy-to-follow Spinach and Mushroom Stuffed Chicken Breasts recipe from Rachael Ray'
     assert h.recipe['image_url'] == 'http://foodnetwork.sndimg.com/content/dam/images/food/unsized/Rachel_Ray.jpg.rend.sni2col.jpeg'
     assert h.recipe['ingredients'] == ['4 boneless, skinless chicken breasts, 6 ounces', 'Large plastic food storage bags or waxed paper', '1 package, 10 ounces, frozen chopped spinach', '2 tablespoons butter', '12 small mushroom caps, crimini or button', '2 cloves garlic, cracked', '1 small shallot, quartered', 'Salt and freshly ground black pepper', '1 cup part skim ricotta cheese', '1/2 cup grated Parmigiano or Romano, a couple of handfuls', '1/2 teaspoon fresh grated or ground nutmeg', 'Toothpicks', '2 tablespoons extra-virgin olive oil', '2 tablespoons butter', '2 tablespoons flour', '1/2 cup white wine', '1 cup chicken broth']
-    assert h.recipe['instructions'] == ['Chicken', 'Dinner', 'Winter']
+    assert h.recipe['instructions'] == ["Place breasts in the center of a plastic food storage bag or 2 large sheets of waxed paper. Pound out the chicken from the center of the bag outward using a heavy-bottomed skillet or mallet. Be firm but controlled with your strokes.","Defrost spinach in the microwave. Transfer spinach to a kitchen towel. Twist towel around spinach and wring it out until very dry. Transfer to a medium-mixing bowl.","Place a nonstick skillet over moderate heat. When skillet is hot, add butter, mushrooms, garlic and shallot. Season with salt and pepper and saute 5 minutes. Transfer mushrooms, garlic and shallot to the food processor. Pulse to grind the mushrooms and transfer to the mixing bowl, adding the processed mushrooms to the spinach. Add ricotta and grated cheese to the bowl and the nutmeg. Stir to combine the stuffing. Return your skillet to the stove over medium high heat.","Place a mound of stuffing on each breast and wrap and roll breast over the stuffing. Secure breasts with toothpicks. Add 3 tablespoons oil to the pan, 3 turns of the pan. Add breasts to the pan and brown on all sides, cooking chicken 10 to 12 minutes. The meat will cook quickly because it is thin. Remove breasts; add butter to the pan and flour. Cook butter and flour for a minute, whisk in wine and reduce another minute. Whisk in broth and return breasts to the pan. Reduce heat and simmer until ready to serve. Remove toothpicks. Serve breasts whole or, remove from pan, slice on an angle and fan out on dinner plates. Top stuffed chicken breasts or sliced stuffed breasts with generous spoonfuls of the sauce."]
     assert h.recipe['prep_time'] == 900
     assert h.recipe['cook_time'] == 1200
     assert h.recipe['total_time'] == 2100
@@ -17,7 +17,7 @@ def test_spinach_mushroom_stuff_chicken():
     assert h.recipe['yields'] == 4
 
 def test_blueberry_muffins():
-    h = hangry('http://allrecipes.com/Recipe/Blueberry-Streusel-Muffins/Detail.aspx?evt19=1&referringHubId=2003')
+    h = Hangry('http://allrecipes.com/Recipe/Blueberry-Streusel-Muffins/Detail.aspx?evt19=1&referringHubId=2003')
     assert h.recipe['canonical_url'] == 'http://allrecipes.com/recipe/blueberry-streusel-muffins/'
     assert h.recipe['name'] == 'Blueberry Streusel Muffins'
     assert h.recipe['description'] == '"This recipe can be made with streusel or plain sugar topping. These muffins don\'t last long in our house. They are a favorite among my family and friends."'
@@ -33,7 +33,7 @@ def test_blueberry_muffins():
 
 
 def test_apple_crisp():
-    h = hangry('http://allrecipes.com/Recipe/Apple-Crisp-II/Detail.aspx?evt19=1&referringHubId=1')
+    h = Hangry('http://allrecipes.com/Recipe/Apple-Crisp-II/Detail.aspx?evt19=1&referringHubId=1')
     assert h.recipe['canonical_url'] == 'http://allrecipes.com/recipe/apple-crisp-ii/'
     assert h.recipe['name'] == 'Apple Crisp II'
     assert h.recipe['description'] == 'This satisfying warm dessert goes perfectly with vanilla ice cream.'

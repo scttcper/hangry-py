@@ -8,7 +8,7 @@ from setuptools.command.test import test
 def run_tests(self):
     pyc = re.compile(r'\.pyc|\$py\.class')
     test_file = pyc.sub('.py', __import__(self.test_suite).__file__)
-    raise SystemExit(__import__('pytest').main(['-xv', test_file]))
+    raise SystemExit(__import__('pytest').main(['-vv', test_file]))
 test.run_tests = run_tests
 
 
