@@ -17,19 +17,19 @@ class Recipe(object):
 
     def to_json(self):
         return {
-            'cook_time': self._cook_time,
-            'prep_time': self._prep_time,
-            'total_time': self._total_time,
-            'canonical_url': self._canonical_url,
-            'description': self._description,
-            'image_url': self._image_url,
-            'ingredients': self._ingredients,
-            'instructions': self._instructions,
-            'name': self._name,
-            'published_date': self._published_date,
-            'yields': self._yields,
-            'yield_modifier': self._yield_modifier,
-            'author': self._author,
+            'cook_time': self.cook_time,
+            'prep_time': self.prep_time,
+            'total_time': self.total_time,
+            'canonical_url': self.canonical_url,
+            'description': self.description,
+            'image_url': self.image_url,
+            'ingredients': self.ingredients,
+            'instructions': self.instructions,
+            'name': self.name,
+            'published_date': self.published_date,
+            'yields': self.yields,
+            'yield_modifier': self.yield_modifier,
+            'author': self.author,
         }
 
     @property
