@@ -4,7 +4,6 @@ from ..schema_org_recipe_parser import schema_org_recipe_parser
 
 
 class foodnetwork(schema_org_recipe_parser):
-
     def parse_instructions(self):
         root = self.soup.find(attrs={'itemprop': 'recipeInstructions'})
         res = []

@@ -1,4 +1,4 @@
-from re import sub, findall
+from re import findall, sub
 
 from .default_recipe_parser import recipe_parser
 
@@ -10,7 +10,6 @@ def use_schema_org(html):
 
 
 class schema_org_recipe_parser(recipe_parser):
-
     def datetime_or_content(self, el):
         if el.has_attr('datetime'):
             return self.parse_isoduration(el['datetime'])
@@ -78,7 +77,7 @@ class schema_org_recipe_parser(recipe_parser):
         for el in els:
             t = el.get_text()
             t = sub('[\t\r\n]', '', t)
-            t = sub("\s+"," ", t).strip()
+            t = sub("\s+", " ", t).strip()
             if len(t) > 2:
                 res.append(t)
         return res or None

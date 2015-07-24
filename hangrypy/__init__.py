@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-    hangrypy
-    ~~~~~~~~~~
-    Description
-"""
 from json import dumps
 
 from bs4 import BeautifulSoup
@@ -11,8 +5,8 @@ from bs4 import BeautifulSoup
 from .default_recipe_parser import recipe_parser
 from .non_standard.allrecipes import allrecipes
 from .non_standard.foodnetwork import foodnetwork
-from .schema_org_recipe_parser import schema_org_recipe_parser, use_schema_org
 from .recipe import Recipe
+from .schema_org_recipe_parser import schema_org_recipe_parser, use_schema_org
 
 # messy python 3 support
 try:
@@ -22,19 +16,12 @@ except ImportError:
     from urllib2 import urlopen, quote
     from urlparse import urlsplit, urlunsplit
 
+parsers = {'schema_org_recipe_parser': schema_org_recipe_parser}
 
-parsers = {
-    'schema_org_recipe_parser': schema_org_recipe_parser
-}
-
-non_standard = {
-    'allrecipes.com': allrecipes,
-    'foodnetwork.com': foodnetwork
-}
+non_standard = {'allrecipes.com': allrecipes, 'foodnetwork.com': foodnetwork}
 
 
 class Hangry(object):
-
     def __init__(self, url, html=None, parser=None):
         self.url_setup(url)
 

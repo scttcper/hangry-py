@@ -1,5 +1,4 @@
 class Recipe(object):
-
     def __init__(self, parser, url):
         self.parser = parser
         self._cook_time = None
@@ -35,7 +34,8 @@ class Recipe(object):
 
     @property
     def canonical_url(self):
-        self._canonical_url = self.parser.parse_canonical_url() or self._canonical_url
+        self._canonical_url = self.parser.parse_canonical_url(
+        ) or self._canonical_url
         return self._canonical_url
 
     @property

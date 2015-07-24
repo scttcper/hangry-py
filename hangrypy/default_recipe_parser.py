@@ -2,7 +2,6 @@ from isodate import parse_duration
 
 
 class recipe_parser(object):
-
     def __init__(self, soup):
         self.soup = soup
 
