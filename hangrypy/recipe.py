@@ -15,6 +15,23 @@ class Recipe(object):
         self._yield_modifier = None
         self._author = None
 
+    def to_json(self):
+        return {
+            'cook_time': self._cook_time,
+            'prep_time': self._prep_time,
+            'total_time': self._total_time,
+            'canonical_url': self._canonical_url,
+            'description': self._description,
+            'image_url': self._image_url,
+            'ingredients': self._ingredients,
+            'instructions': self._instructions,
+            'name': self._name,
+            'published_date': self._published_date,
+            'yields': self._yields,
+            'yield_modifier': self._yield_modifier,
+            'author': self._author,
+        }
+
     @property
     def cook_time(self):
         if not self._cook_time:

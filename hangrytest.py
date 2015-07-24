@@ -16,6 +16,7 @@ def test_spinach_mushroom_stuff_chicken():
     assert h.recipe['published_date'] == None
     assert h.recipe['yields'] == 4
     assert h.recipe.author == 'Rachael Ray'
+    assert type(h.recipe.to_json()) == dict
 
 def test_blueberry_muffins():
     h = Hangry('http://allrecipes.com/Recipe/Blueberry-Streusel-Muffins/Detail.aspx?evt19=1&referringHubId=2003')
@@ -32,6 +33,7 @@ def test_blueberry_muffins():
     assert h.recipe['yields'] == 1
     assert h.recipe['yield_modifier'] == 'dozen'
     assert h.recipe.author == 'Carol Semenuk'
+    assert type(h.recipe.to_json()) == dict
 
 
 def test_apple_crisp():
@@ -49,4 +51,5 @@ def test_apple_crisp():
     assert h.recipe['yields'] == 1
     assert h.recipe['yield_modifier'] == '9x13-inch pan'
     assert h.recipe.author == 'Diane Kester'
+    assert type(h.recipe.to_json()) == dict
     
