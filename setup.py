@@ -15,7 +15,7 @@ test.run_tests = run_tests
 setup(
     name='hangrypy',
     packages=['hangrypy'],
-    version='0.1',
+    version='0.2',
     description='Parse recipies from microformats similar to the hangry gem',
     author='Scott Cooper',
     author_email='scttcper@gmail.com',
