@@ -14,3 +14,10 @@ class foodnetwork(schema_org_recipe_parser):
             if len(t) > 2:
                 res.append(t)
         return res or None
+
+    def parse_image_url(self):
+        el = self.soup.find(attrs={'itemprop': 'name'})
+        name = el.get_text()
+        el = self.soup.find(attrs={'alt': name})
+        if el and el.has_attr('src'):
+            return el['src']
