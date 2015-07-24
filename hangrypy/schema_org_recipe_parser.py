@@ -86,3 +86,13 @@ class schema_org_recipe_parser(recipe_parser):
         el = self.soup.find(attrs={'itemprop': 'name'})
         if el:
             return el.get_text()
+
+    def parse_author(self):
+        el = self.soup.find(attrs={'itemprop': 'author'})
+        if el:
+            further = el.find(attrs={'itemprop': 'name'})
+            if further:
+                return further.get_text()
+            else:
+                return el.get_text()
+

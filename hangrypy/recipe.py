@@ -13,6 +13,7 @@ class Recipe(object):
         self._published_date = None
         self._yields = None
         self._yield_modifier = None
+        self._author = None
 
     @property
     def cook_time(self):
@@ -85,6 +86,12 @@ class Recipe(object):
         if not self._yield_modifier:
             self._yield_set()
         return self._yield_modifier
+
+    @property
+    def author(self):
+        if not self._author:
+            self._author = self.parser.parse_author()
+        return self._author
 
     def _yield_set(self):
         self._yield_modifier, self._yields = self.parser.parse_yields()
