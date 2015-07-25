@@ -1,6 +1,6 @@
 from re import sub
 
-from ..schema_org_recipe_parser import schema_org_recipe_parser
+from .schema_org_recipe_parser import schema_org_recipe_parser
 
 
 class foodnetwork(schema_org_recipe_parser):
