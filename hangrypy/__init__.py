@@ -3,8 +3,8 @@ from json import dumps
 from bs4 import BeautifulSoup
 
 from .default_recipe_parser import recipe_parser
-from .non_standard.allrecipes import allrecipes
-from .non_standard.foodnetwork import foodnetwork
+from .allrecipes import allrecipes
+from .foodnetwork import foodnetwork
 from .recipe import Recipe
 from .schema_org_recipe_parser import schema_org_recipe_parser, use_schema_org
 

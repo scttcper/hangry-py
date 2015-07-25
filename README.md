@@ -4,9 +4,18 @@ python port of https://github.com/iancanderson/hangry
 
 To run tests ```coverage run --source=hangrypy setup.py test```
 
-example
+##Installation
+```bash
+pip install hangrypy
+```
+
+##example
 ```python
+from hangrypy import Hangry
 h = Hangry(url='http://www.foodnetwork.com/recipes/rachael-ray/spinach-and-mushroom-stuffed-chicken-breasts-recipe.html')
+
+h.recipe.to_json() # returns dict of recipe
+
 h.recipe.canonical_url # 'http://www.foodnetwork.com/recipes/rachael-ray/spinach-and-mushroom-stuffed-chicken-breasts-recipe.html'
 h.recipe.name # 'Spinach and Mushroom Stuffed Chicken Breasts'
 h.recipe.description # 'Get this all-star, easy-to-follow Spinach and Mushroom Stuffed Chicken Breasts recipe from Rachael Ray'
@@ -18,4 +27,5 @@ h.recipe.cook_time # 1200
 h.recipe.total_time # 2100
 h.recipe.published_date # None
 h.recipe.yields # 4
+h.recipe['yield_modifier'] # 'dozen'
 ```
