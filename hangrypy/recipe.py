@@ -1,6 +1,10 @@
+from json import dumps
+
+
 class Recipe(object):
-    def __init__(self, parser, url):
+    def __init__(self, parser, domain, url):
         self.parser = parser
+        self._domain = domain
         self._cook_time = None
         self._prep_time = None
         self._total_time = None
@@ -15,8 +19,9 @@ class Recipe(object):
         self._yield_modifier = None
         self._author = None
 
-    def to_json(self):
+    def to_dict(self):
         return {
+            'domain': self.domain,
             'cook_time': self.cook_time,
             'prep_time': self.prep_time,
             'total_time': self.total_time,
@@ -31,6 +36,13 @@ class Recipe(object):
             'yield_modifier': self.yield_modifier,
             'author': self.author,
         }
+
+    def to_json(self):
+        return dumps(self.to_dict())
+
+    @property
+    def domain(self):
+        return self._domain
 
     @property
     def cook_time(self):

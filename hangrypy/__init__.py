@@ -1,5 +1,3 @@
-from json import dumps
-
 from bs4 import BeautifulSoup
 
 from .default_recipe_parser import recipe_parser
@@ -20,33 +18,31 @@ parsers = {'schema_org_recipe_parser': schema_org_recipe_parser}
 non_standard = {'foodnetwork.com': foodnetwork}
 
 
-class Hangry(object):
-    def __init__(self, url, html=None, parser=None):
-        self.url_setup(url)
-
-        # open url or use passed
-        if not html:
-            html = urlopen(url).read()
-        soup = BeautifulSoup(html, 'html5lib')
-        self.parser = self.select_parser(html, parser)(soup)
-        self.recipe = Recipe(self.parser, url)
-
-    def select_parser(self, html, parser):
-        if parser:
-            return parsers[parser]
-        if self.domain in non_standard:
-            return non_standard[self.domain]
-        if use_schema_org(html):
-            return schema_org_recipe_parser
-        return recipe_parser
-
-    def url_setup(self, url):
-        self.full_url = url
+def url_setup(url):
         scheme, netloc, path, qs, anchor = urlsplit(url)
-        self.domain = '.'.join(netloc.split('.')[-2:])
+        domain = '.'.join(netloc.split('.')[-2:])
         path = quote(path, '/%')
         # remove everything after path
-        self.trimmed_url = urlunsplit((scheme, netloc, path, '', ''))
+        url = urlunsplit((scheme, netloc, path, '', ''))
+        return url, domain
 
-    def to_json(self):
-        return dumps(self.recipe)
+
+def select_parser(html, parser, domain):
+    if parser:
+        return parsers[parser]
+    if domain in non_standard:
+        return non_standard[domain]
+    if use_schema_org(html):
+        return schema_org_recipe_parser
+    return recipe_parser
+
+
+def Hangry(url, html=None, parser=None):
+    # open url or use passed
+    if not html:
+        html = urlopen(url).read()
+    soup = BeautifulSoup(html, 'html5lib')
+    url, domain = url_setup(url)
+    parser = select_parser(html, parser, domain)(soup)
+    recipe = Recipe(parser, domain, url)
+    return recipe
