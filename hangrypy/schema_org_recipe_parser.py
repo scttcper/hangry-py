@@ -19,7 +19,10 @@ class schema_org_recipe_parser(recipe_parser):
 
     def parse_cook_time(self):
         el = self.soup.find(attrs={'itemprop': 'cookTime'})
-        return self.datetime_or_content(el)
+        if el:
+            return self.datetime_or_content(el)
+        else:
+            return 0
 
     def parse_prep_time(self):
         el = self.soup.find(attrs={'itemprop': 'prepTime'})

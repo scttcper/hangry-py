@@ -52,4 +52,22 @@ def test_apple_crisp():
     assert recipe['yield_modifier'] == '9x13-inch pan'
     assert recipe.author == 'Diane Kester'
     assert type(recipe.to_dict()) == dict
-    
+
+
+def test_cafe_green_salad():
+    # this tests makes sure it works for 
+    recipe = Hangry('http://www.foodnetwork.com/recipes/melissa-darabian/cafe-green-salad-recipe.html')
+    assert recipe['name'] == 'Cafe Green Salad'
+    assert recipe['canonical_url'] == 'http://www.foodnetwork.com/recipes/melissa-darabian/cafe-green-salad-recipe.html'
+    assert recipe['description'] == 'Get this all-star, easy-to-follow Cafe Green Salad recipe from Melissa d\'Arabian'
+    assert recipe['image_url'] == 'http://foodnetwork.sndimg.com/content/dam/images/food/fullset/2009/11/6/0/0132672_Cafe-Green-Salad-01_s4x3.jpg.rend.sni12col.landscape.jpeg'
+    assert len(recipe['ingredients']) == 6
+    assert len(recipe['instructions']) == 2
+    assert recipe['prep_time'] == 600
+    assert recipe['cook_time'] == 0
+    assert recipe['total_time'] == 600
+    assert recipe['published_date'] == None
+    assert recipe['yields'] == 4
+    assert recipe['yield_modifier'] == 'servings'
+    assert recipe.author == 'Melissa d\'Arabian'
+    assert type(recipe.to_dict()) == dict
