@@ -11,18 +11,18 @@ def use_schema_org(html):
 
 class schema_org_recipe_parser(recipe_parser):
     def datetime_or_content(self, el):
-        if el.has_attr('datetime'):
-            return self.parse_isoduration(el['datetime'])
-        if el.has_attr('content'):
-            return self.parse_isoduration(el['content'])
-        return None
+        if el:
+            if el.has_attr('datetime'):
+                return self.parse_isoduration(el['datetime'])
+            if el.has_attr('content'):
+                return self.parse_isoduration(el['content'])
+            return None
+        else:
+            return 0
 
     def parse_cook_time(self):
         el = self.soup.find(attrs={'itemprop': 'cookTime'})
-        if el:
-            return self.datetime_or_content(el)
-        else:
-            return 0
+        return self.datetime_or_content(el)
 
     def parse_prep_time(self):
         el = self.soup.find(attrs={'itemprop': 'prepTime'})
